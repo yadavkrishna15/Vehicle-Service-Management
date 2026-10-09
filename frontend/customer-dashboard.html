@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customer Dashboard - VSMS</title>
+    <meta name="description" content="Customer dashboard to track vehicle services, registered vehicles, and billing details.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="navbar" id="navbar"></header>
+
+    <main class="container" id="customerDashboardSection">
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">Welcome, <span id="welcomeName">Customer</span>! 👋</h1>
+                <p class="page-subtitle">Manage your registered vehicles and track live service maintenance.</p>
+            </div>
+            <div class="btn-group">
+                <a href="add-vehicle.html" class="btn btn-secondary">+ Add Vehicle</a>
+                <a href="service-booking.html" class="btn btn-primary">📅 Book Service</a>
+            </div>
+        </div>
+
+        <div id="alertArea"></div>
+
+        <!-- Metric Stat Cards -->
+        <div class="stats-grid">
+            <div class="stat-card">
+                <div class="stat-icon blue">🚗</div>
+                <div class="stat-info">
+                    <h3>My Vehicles</h3>
+                    <div class="stat-value" id="statCustomerVehicles">0</div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon orange">⏳</div>
+                <div class="stat-info">
+                    <h3>Active Services</h3>
+                    <div class="stat-value" id="statActiveServices">0</div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon green">✅</div>
+                <div class="stat-info">
+                    <h3>Completed Services</h3>
+                    <div class="stat-value" id="statCompletedServices">0</div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon cyan">🧾</div>
+                <div class="stat-info">
+                    <h3>Total Invoices</h3>
+                    <div class="stat-value" id="statCustomerBills">0</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Actions & Recent Bookings -->
+        <div class="card" style="margin-bottom: 2rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+                <h2 style="font-size: 1.25rem; font-weight: 700;">My Recent Service Bookings</h2>
+                <a href="service-requests.html" class="btn btn-sm btn-secondary">View All</a>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Service ID</th>
+                            <th>Vehicle</th>
+                            <th>Service Type</th>
+                            <th>Preferred Date</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="customerRequestsTable">
+                        <tr><td colspan="6" style="text-align:center;padding:2rem;">Loading bookings...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Vehicle Service Management System (VSMS). Built for B.Sc. Computer Science Project.</p>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

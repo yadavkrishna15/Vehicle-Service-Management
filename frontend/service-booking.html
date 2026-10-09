@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Service - VSMS</title>
+    <meta name="description" content="Book a vehicle maintenance or repair service appointment.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="navbar" id="navbar"></header>
+
+    <main class="container" style="max-width: 650px;">
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">Book Service Appointment 🔧</h1>
+                <p class="page-subtitle">Schedule a service session for your vehicle.</p>
+            </div>
+            <a href="service-requests.html" class="btn btn-secondary">My Bookings</a>
+        </div>
+
+        <div id="alertArea"></div>
+
+        <div class="card">
+            <form id="serviceBookingForm">
+                <div class="form-group">
+                    <label for="vehicleSelect" class="form-label">Select Vehicle *</label>
+                    <select id="vehicleSelect" class="form-control" required>
+                        <option value="">Loading vehicles...</option>
+                    </select>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="serviceType" class="form-label">Service Type *</label>
+                        <select id="serviceType" class="form-control" required>
+                            <option value="General Service" selected>General Service</option>
+                            <option value="Oil Change">Oil Change & Filter</option>
+                            <option value="Brake Service">Brake Inspection & Service</option>
+                            <option value="Engine Check">Engine Diagnostics & Tune-up</option>
+                            <option value="Battery Check">Battery Check & Replacement</option>
+                            <option value="Tyre Service">Tyre Alignment & Balancing</option>
+                            <option value="Washing">Water Wash & Detailing</option>
+                            <option value="Other">Other Mechanical Repair</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="preferredDate" class="form-label">Preferred Date *</label>
+                        <input type="date" id="preferredDate" class="form-control" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="problemDescription" class="form-label">Describe Problem / Specific Instructions</label>
+                    <textarea id="problemDescription" class="form-control" rows="4" placeholder="Mention any unusual sounds, vibrations, warning indicators, or specific maintenance items you want checked..."></textarea>
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Book Service Request</button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Vehicle Service Management System (VSMS). Built for B.Sc. Computer Science Project.</p>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/service-requests.js"></script>
+</body>
+</html>

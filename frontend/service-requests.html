@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Requests - VSMS</title>
+    <meta name="description" content="View and manage vehicle service requests and status.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="navbar" id="navbar"></header>
+
+    <main class="container">
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">Service Requests 📋</h1>
+                <p class="page-subtitle">Track booking statuses, technician assignments, and progress.</p>
+            </div>
+            <a href="service-booking.html" class="btn btn-primary">+ Book New Service</a>
+        </div>
+
+        <div id="alertArea"></div>
+
+        <!-- Filter & Search Toolbar -->
+        <div class="toolbar">
+            <div class="search-box">
+                <input type="text" id="searchRequestId" class="form-control" placeholder="🔍 Search by Service ID or Vehicle No...">
+            </div>
+
+            <div style="display: flex; align-items: center; gap: 0.5rem;">
+                <label for="statusFilter" style="font-size: 0.85rem; font-weight: 600; color: var(--secondary);">Filter Status:</label>
+                <select id="statusFilter" class="form-control" style="width: auto;">
+                    <option value="ALL">All Statuses</option>
+                    <option value="Requested">Requested</option>
+                    <option value="Confirmed">Confirmed</option>
+                    <option value="In Service">In Service</option>
+                    <option value="Completed">Completed</option>
+                    <option value="Cancelled">Cancelled</option>
+                </select>
+            </div>
+        </div>
+
+        <div class="card" style="padding: 0; overflow: hidden;">
+            <div class="table-responsive">
+                <table class="table" id="serviceRequestsTable">
+                    <thead>
+                        <tr>
+                            <th>Service ID</th>
+                            <!-- Customer column added if Admin -->
+                            <th>Vehicle</th>
+                            <th>Service Type</th>
+                            <th>Date</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td colspan="7" style="text-align:center;padding:2rem;">Loading service requests...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Vehicle Service Management System (VSMS). Built for B.Sc. Computer Science Project.</p>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/service-requests.js"></script>
+</body>
+</html>

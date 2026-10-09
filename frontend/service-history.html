@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service History - VSMS</title>
+    <meta name="description" content="View maintenance log and past service history for registered vehicles.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="navbar" id="navbar"></header>
+
+    <main class="container" style="max-width: 900px;">
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">Vehicle Service History 📖</h1>
+                <p class="page-subtitle">Complete chronological maintenance records, parts replaced, and costs.</p>
+            </div>
+            <a href="vehicles.html" class="btn btn-secondary">← Back to Vehicles</a>
+        </div>
+
+        <div id="alertArea"></div>
+
+        <!-- Vehicle Picker Card -->
+        <div class="card" style="margin-bottom: 1.5rem;">
+            <div class="form-group" style="margin-bottom: 0;">
+                <label for="historyVehicleSelect" class="form-label">Select Vehicle to View Log:</label>
+                <select id="historyVehicleSelect" class="form-control" style="font-weight: 500;">
+                    <option value="">Loading vehicles...</option>
+                </select>
+            </div>
+        </div>
+
+        <!-- History Records Container -->
+        <div id="historyListContainer">
+            <p style="text-align:center;padding:2rem;color:var(--text-muted);">Please select a vehicle above.</p>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Vehicle Service Management System (VSMS). Built for B.Sc. Computer Science Project.</p>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/service-history.js"></script>
+</body>
+</html>

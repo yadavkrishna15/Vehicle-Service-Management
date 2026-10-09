@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Service Request Details - VSMS</title>
+    <meta name="description" content="Detailed information and status updates for a vehicle service request.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="navbar" id="navbar"></header>
+
+    <main class="container" id="serviceDetailsContainer" style="max-width: 850px;">
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">Service Details (<span id="detailServiceId">SRV-0000</span>)</h1>
+                <p class="page-subtitle">Complete service summary and technician allocation.</p>
+            </div>
+            <a href="service-requests.html" class="btn btn-secondary">← Back to Requests</a>
+        </div>
+
+        <div id="alertArea"></div>
+
+        <!-- Details Grid Card -->
+        <div class="card" style="margin-bottom: 1.5rem;">
+            <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px solid var(--border); padding-bottom: 1rem; margin-bottom: 1.25rem;">
+                <div>
+                    <span style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600;">Status</span>
+                    <div id="detailStatus" style="margin-top: 0.25rem;"></div>
+                </div>
+                <div style="text-align: right;">
+                    <span style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600;">Preferred Date</span>
+                    <div id="detailPreferredDate" style="font-weight: 600; font-size: 0.95rem; margin-top: 0.25rem;">-</div>
+                </div>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem; margin-bottom: 1.5rem;">
+                <div>
+                    <span style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600;">Customer</span>
+                    <p id="detailCustomerName" style="font-size: 1rem; font-weight: 600; margin-top: 0.2rem;">-</p>
+                </div>
+                <div>
+                    <span style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600;">Vehicle Registration</span>
+                    <p id="detailVehicleNumber" style="font-size: 1rem; font-weight: 600; margin-top: 0.2rem;">-</p>
+                </div>
+                <div>
+                    <span style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600;">Service Category</span>
+                    <p id="detailServiceType" style="font-size: 1rem; font-weight: 600; margin-top: 0.2rem;">-</p>
+                </div>
+                <div>
+                    <span style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600;">Assigned Mechanic</span>
+                    <p id="detailMechanic" style="font-size: 1rem; font-weight: 600; color: var(--primary); margin-top: 0.2rem;">-</p>
+                </div>
+            </div>
+
+            <div style="background: #f8fafc; padding: 1rem; border-radius: var(--radius-sm); margin-bottom: 1.25rem;">
+                <span style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600;">Issue Description / Notes</span>
+                <p id="detailProblem" style="margin-top: 0.35rem; font-size: 0.95rem;"></p>
+            </div>
+
+            <div style="display: flex; gap: 2rem; border-top: 1px solid var(--border); padding-top: 1rem;">
+                <div>
+                    <span style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600;">Estimated Cost</span>
+                    <p id="detailEstCost" style="font-size: 1.15rem; font-weight: 700; color: var(--dark); margin-top: 0.2rem;">₹0.00</p>
+                </div>
+                <div>
+                    <span style="font-size: 0.8rem; text-transform: uppercase; color: var(--text-muted); font-weight: 600;">Final Cost</span>
+                    <p id="detailFinalCost" style="font-size: 1.15rem; font-weight: 700; color: var(--primary); margin-top: 0.2rem;">₹0.00</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Admin Control Management Box (Visible to Admin only) -->
+        <div class="card" id="adminControlsSection" style="display: none; border-top: 4px solid var(--primary);">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+                <h2 style="font-size: 1.25rem; font-weight: 700;">🛡️ Staff Management Controls</h2>
+                <a id="createBillBtn" href="#" class="btn btn-sm btn-success">🧾 Generate Bill</a>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="updateStatusSelect" class="form-label">Service Status</label>
+                    <select id="updateStatusSelect" class="form-control">
+                        <option value="Requested">Requested</option>
+                        <option value="Confirmed">Confirmed</option>
+                        <option value="In Service">In Service</option>
+                        <option value="Completed">Completed (Auto-creates History)</option>
+                        <option value="Cancelled">Cancelled</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="updateMechanicSelect" class="form-label">Assign Mechanic</label>
+                    <select id="updateMechanicSelect" class="form-control">
+                        <option value="">Loading mechanics...</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="updateEstCost" class="form-label">Estimated Cost (₹)</label>
+                    <input type="number" step="0.01" min="0" id="updateEstCost" class="form-control">
+                </div>
+
+                <div class="form-group">
+                    <label for="updateFinalCost" class="form-label">Final Cost (₹)</label>
+                    <input type="number" step="0.01" min="0" id="updateFinalCost" class="form-control">
+                </div>
+            </div>
+
+            <button type="button" id="saveDetailsBtn" class="btn btn-primary" style="margin-top: 0.5rem;">Save Changes</button>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Vehicle Service Management System (VSMS). Built for B.Sc. Computer Science Project.</p>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/service-requests.js"></script>
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vehicles - VSMS</title>
+    <meta name="description" content="View, search, and manage registered vehicles in the service system.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="navbar" id="navbar"></header>
+
+    <main class="container">
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">Registered Vehicles 🚗</h1>
+                <p class="page-subtitle">Track vehicle records, specifications, and service history.</p>
+            </div>
+            <a href="add-vehicle.html" class="btn btn-primary">+ Add New Vehicle</a>
+        </div>
+
+        <div id="alertArea"></div>
+
+        <div class="toolbar">
+            <div class="search-box">
+                <input type="text" id="vehicleSearchInput" class="form-control" placeholder="🔍 Search by vehicle number (e.g. MH12AB1234)...">
+            </div>
+        </div>
+
+        <div class="card" style="padding: 0; overflow: hidden;">
+            <div class="table-responsive">
+                <table class="table" id="vehiclesTable">
+                    <thead>
+                        <tr>
+                            <th>Vehicle Number</th>
+                            <th>Type</th>
+                            <th>Brand & Model</th>
+                            <th>Year</th>
+                            <th>Fuel Type</th>
+                            <!-- Customer column injected if admin -->
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr><td colspan="7" style="text-align:center;padding:2rem;">Loading vehicles...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Vehicle Service Management System (VSMS). Built for B.Sc. Computer Science Project.</p>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/vehicles.js"></script>
+</body>
+</html>

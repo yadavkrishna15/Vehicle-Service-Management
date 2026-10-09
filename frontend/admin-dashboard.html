@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard - VSMS</title>
+    <meta name="description" content="Admin dashboard for workshop management, service request status, mechanics, and billing.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="navbar" id="navbar"></header>
+
+    <main class="container" id="adminDashboardSection">
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">Service Center Overview 📊</h1>
+                <p class="page-subtitle">Real-time workshop activity, bookings, and mechanic assignments.</p>
+            </div>
+            <div class="btn-group">
+                <a href="mechanics.html" class="btn btn-secondary">👨‍🔧 Mechanics</a>
+                <a href="bills.html" class="btn btn-secondary">🧾 Invoices</a>
+                <a href="service-requests.html" class="btn btn-primary">🛠️ Manage Requests</a>
+            </div>
+        </div>
+
+        <div id="alertArea"></div>
+
+        <!-- 7 Key Metric Cards -->
+        <div class="stats-grid" style="grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));">
+            <div class="stat-card">
+                <div class="stat-icon blue">👥</div>
+                <div class="stat-info">
+                    <h3>Customers</h3>
+                    <div class="stat-value" id="statCustomers">0</div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon cyan">🚘</div>
+                <div class="stat-info">
+                    <h3>Vehicles</h3>
+                    <div class="stat-value" id="statVehicles">0</div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon blue">📋</div>
+                <div class="stat-info">
+                    <h3>Total Requests</h3>
+                    <div class="stat-value" id="statRequests">0</div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon orange">⏳</div>
+                <div class="stat-info">
+                    <h3>Pending</h3>
+                    <div class="stat-value" id="statPending">0</div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon orange">🔧</div>
+                <div class="stat-info">
+                    <h3>In Progress</h3>
+                    <div class="stat-value" id="statInProgress">0</div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon green">✅</div>
+                <div class="stat-info">
+                    <h3>Completed</h3>
+                    <div class="stat-value" id="statCompleted">0</div>
+                </div>
+            </div>
+
+            <div class="stat-card">
+                <div class="stat-icon green">💵</div>
+                <div class="stat-info">
+                    <h3>Total Bills</h3>
+                    <div class="stat-value" id="statBills">0</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Quick Navigation Shortcuts -->
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem; margin-bottom: 2rem;">
+            <a href="vehicles.html" class="card" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
+                <span style="font-size: 2rem;">🚗</span>
+                <div>
+                    <h3 style="font-size: 1rem; font-weight: 700; color: var(--dark);">Vehicle Inventory</h3>
+                    <p style="font-size: 0.8rem; color: var(--text-muted);">View all registered vehicles</p>
+                </div>
+            </a>
+            <a href="service-requests.html" class="card" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
+                <span style="font-size: 2rem;">📋</span>
+                <div>
+                    <h3 style="font-size: 1rem; font-weight: 700; color: var(--dark);">Service Requests</h3>
+                    <p style="font-size: 0.8rem; color: var(--text-muted);">Assign staff and change status</p>
+                </div>
+            </a>
+            <a href="mechanics.html" class="card" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
+                <span style="font-size: 2rem;">👨‍🔧</span>
+                <div>
+                    <h3 style="font-size: 1rem; font-weight: 700; color: var(--dark);">Mechanic Staff</h3>
+                    <p style="font-size: 0.8rem; color: var(--text-muted);">Manage availability and tasks</p>
+                </div>
+            </a>
+            <a href="bills.html" class="card" style="text-decoration: none; color: inherit; display: flex; align-items: center; gap: 1rem;">
+                <span style="font-size: 2rem;">🧾</span>
+                <div>
+                    <h3 style="font-size: 1rem; font-weight: 700; color: var(--dark);">Billing & Revenue</h3>
+                    <p style="font-size: 0.8rem; color: var(--text-muted);">Issue invoices and mark paid</p>
+                </div>
+            </a>
+        </div>
+
+        <!-- Recent Requests Section -->
+        <div class="card">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.25rem;">
+                <h2 style="font-size: 1.25rem; font-weight: 700;">Recent Service Bookings</h2>
+                <a href="service-requests.html" class="btn btn-sm btn-secondary">View All Requests</a>
+            </div>
+
+            <div class="table-responsive">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Service ID</th>
+                            <th>Customer</th>
+                            <th>Vehicle No.</th>
+                            <th>Service Type</th>
+                            <th>Status</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="recentRequestsTable">
+                        <tr><td colspan="6" style="text-align:center;padding:2rem;">Loading recent activity...</td></tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Vehicle Service Management System (VSMS). Built for B.Sc. Computer Science Project.</p>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/dashboard.js"></script>
+</body>
+</html>

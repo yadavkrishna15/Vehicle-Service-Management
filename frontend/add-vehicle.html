@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Vehicle - VSMS</title>
+    <meta name="description" content="Register a new customer vehicle in the system.">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="navbar" id="navbar"></header>
+
+    <main class="container" style="max-width: 650px;">
+        <div class="page-header">
+            <div>
+                <h1 class="page-title">Register Vehicle 🚘</h1>
+                <p class="page-subtitle">Enter details to add this vehicle to your service account.</p>
+            </div>
+            <a href="vehicles.html" class="btn btn-secondary">← Back to Vehicles</a>
+        </div>
+
+        <div id="alertArea"></div>
+
+        <div class="card">
+            <form id="addVehicleForm">
+                <div class="form-group">
+                    <label for="vehicleNumber" class="form-label">Vehicle Registration Number *</label>
+                    <input type="text" id="vehicleNumber" class="form-control" placeholder="e.g. MH12AB1234 or DL03XY9876" required autofocus style="text-transform: uppercase;">
+                    <small style="color: var(--text-muted); font-size: 0.8rem;">Unique registration plate number.</small>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="vehicleType" class="form-label">Vehicle Type *</label>
+                        <select id="vehicleType" class="form-control" required>
+                            <option value="Car" selected>Car</option>
+                            <option value="Bike">Bike / Motorcycle</option>
+                            <option value="Scooter">Scooter</option>
+                            <option value="SUV">SUV</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="fuelType" class="form-label">Fuel Type *</label>
+                        <select id="fuelType" class="form-control" required>
+                            <option value="Petrol" selected>Petrol</option>
+                            <option value="Diesel">Diesel</option>
+                            <option value="Electric">Electric (EV)</option>
+                            <option value="CNG">CNG</option>
+                            <option value="Hybrid">Hybrid</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="brand" class="form-label">Brand / Manufacturer *</label>
+                        <input type="text" id="brand" class="form-control" placeholder="e.g. Honda, Hyundai, Maruti" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="model" class="form-label">Model Name *</label>
+                        <input type="text" id="model" class="form-control" placeholder="e.g. Civic, City, i20, Swift" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="manufacturingYear" class="form-label">Manufacturing Year</label>
+                    <input type="number" id="manufacturingYear" class="form-control" placeholder="e.g. 2021" min="1980" max="2027" value="2022">
+                </div>
+
+                <button type="submit" class="btn btn-primary" style="width: 100%; margin-top: 1rem;">Register Vehicle</button>
+            </form>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2026 Vehicle Service Management System (VSMS). Built for B.Sc. Computer Science Project.</p>
+    </footer>
+
+    <script src="js/api.js"></script>
+    <script src="js/vehicles.js"></script>
+</body>
+</html>
