@@ -3,8 +3,8 @@
  * Standardized Fetch wrapper and role-based session utilities
  */
 
-// Change this URL when deploying to Render / Railway / cloud backend
-const API_BASE_URL = "http://localhost:8080";
+// Live Render Backend URL
+const API_BASE_URL = "https://vehicle-service-management-waua.onrender.com";
 
 const STORAGE_KEY = "vsms_user";
 
